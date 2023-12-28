@@ -14,7 +14,7 @@ from utils import *
 
 NUM_EPOCHS = 10
 LEARNING_RATE = 1e-3
-BATCH_SIZE = 32
+BATCH_SIZE = 12
 
 net = Autoencoder()
 print(net)
@@ -28,7 +28,7 @@ def train(net, trainloader, NUM_EPOCHS):
         running_loss = 0.0
         psnr = 0.0
         for data in trainloader:
-            img, _ = data  # no need for the labels
+            img = data  # no need for the labels
             img = img.to(device)
             optimizer.zero_grad()
             outputs = net(img)

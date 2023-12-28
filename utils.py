@@ -16,7 +16,7 @@ def make_dir():
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 def save_decoded_image(img, name):
-    img = img.view(img.size(0), 3, 32, 32)
+    img = img.view(img.size(0), 3, 256, 256)
     save_image(img, name)
 
 def calculate_psnr(img1, img2):

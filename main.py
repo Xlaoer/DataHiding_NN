@@ -1,23 +1,33 @@
 from train import *
+from torch.utils.data import Dataset, DataLoader
+import PIL.Image as Image
 
 
 transform = transforms.Compose([
+    transforms.Resize((256,256)),
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
 
-trainset = datasets.CIFAR10(
-    root='./data',
-    train=True,
-    download=True,
-    transform=transform
-)
-testset = datasets.CIFAR10(
-    root='./data',
-    train=False,
-    download=True,
-    transform=transform
-)
+class ImageDataset(Dataset):
+  def __init__(self, root_dir, transform=None):
+    self.root_dir = root_dir
+    self.transform = transform
+    self.imgs = os.listdir(root_dir)
+
+  def __getitem__(self, index):
+    img_path = os.path.join(self.root_dir, self.imgs[index])
+    img = Image.open(img_path).convert('RGB')
+    if self.transform is not None:
+      img = self.transform(img)
+    return img
+
+  def __len__(self):
+    return len(self.imgs)
+
+trainset = ImageDataset('train_images',transform=transform)
+testset = ImageDataset('test_images',transform=transform)
+
 trainloader = DataLoader(
     trainset,
     batch_size=BATCH_SIZE,
@@ -34,11 +44,11 @@ testloader = DataLoader(
 
 def test_image_reconstruction(net, testloader):
     for batch in testloader:
-        img, _ = batch
+        img = batch
         save_image(img,'conv_cifar10_origin.png')
         img = img.to(device)
         outputs = net(img)
-        outputs = outputs.view(outputs.size(0), 3, 32, 32).cpu().data
+        outputs = outputs.view(outputs.size(0), 3, 256, 256).cpu().data
         save_image(outputs, 'conv_cifar10_reconstruction.png')
         break
 
