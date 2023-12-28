@@ -35,6 +35,7 @@ testloader = DataLoader(
 def test_image_reconstruction(net, testloader):
     for batch in testloader:
         img, _ = batch
+        save_image(img,'conv_cifar10_origin.png')
         img = img.to(device)
         outputs = net(img)
         outputs = outputs.view(outputs.size(0), 3, 32, 32).cpu().data
