@@ -1,13 +1,7 @@
 import os
 import torch
-import torchvision
-import torch.nn as nn
-import torchvision.transforms as transforms
-import torch.optim as optim
-import torch.nn.functional as F
-import matplotlib.pyplot as plt
-from torchvision import datasets
-from torch.utils.data import DataLoader
+import numpy as np
+import math
 from torchvision.utils import save_image
 
 
@@ -25,3 +19,11 @@ def save_decoded_image(img, name):
     img = img.view(img.size(0), 3, 32, 32)
     save_image(img, name)
 
+def calculate_psnr(img1, img2):
+    # img1 and img2 have range [0, 255]
+    img1 = img1.astype(np.float64)
+    img2 = img2.astype(np.float64)
+    mse = np.mean((img1 - img2)**2)
+    if mse == 0:
+        return float('inf')
+    return 20 * math.log10(255.0 / math.sqrt(mse))
