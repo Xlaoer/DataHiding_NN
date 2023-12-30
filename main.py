@@ -1,6 +1,8 @@
 from train import *
 from torch.utils.data import Dataset, DataLoader
 import PIL.Image as Image
+import argparse
+
 
 
 transform = transforms.Compose([
@@ -45,26 +47,37 @@ testloader = DataLoader(
 def test_image_reconstruction(net, testloader):
     for batch in testloader:
         img = batch
-        save_image(img,'conv_cifar10_origin.png')
+        save_image(img,'test_origin.png')
         img = img.to(device)
         outputs = net(img)
         outputs = outputs.view(outputs.size(0), 3, 256, 256).cpu().data
-        save_image(outputs, 'conv_cifar10_reconstruction.png')
+        save_image(outputs, 'test_reconstruction.png')
+        print('PSNR for this test is {}'.format(calculate_psnr('test_origin.png','test_reconstruction.png')))
         break
 
 
 if __name__ == '__main__':
+    parent_parser = argparse.ArgumentParser(description='Training of nets')
+    subparsers = parent_parser.add_subparsers(dest='command', help='Sub-parser for commands')
+    new_parser = subparsers.add_parser('new', help='train & test')
+    continue_parser = subparsers.add_parser('continue', help='test a existing model')
+    args = parent_parser.parse_args()
     device = get_device()
     print(device)
     net.to(device)
     make_dir()
-    train_loss = train(net, trainloader, NUM_EPOCHS)
-    plt.figure()
-    plt.plot(train_loss)
-    plt.title('Train Loss')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.savefig('conv_ae_cifar10_loss.png')
+    if args.command == 'continue':
+        net = torch.load("./model/model1.pth")  # 导入模型参数
+    else:
+        train_loss = train(net, trainloader, NUM_EPOCHS)
+        plt.figure()
+        plt.plot(train_loss)
+        plt.title('Train Loss')
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.savefig('conv_ae_cifar10_loss.png')
     test_image_reconstruction(net, testloader)
+    if args.command != 'continue':
+        torch.save(net, "./model/model1.pth")
 
 

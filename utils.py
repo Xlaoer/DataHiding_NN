@@ -14,8 +14,11 @@ def get_device():
     return device
 def make_dir():
     image_dir = 'Conv_CIFAR10_Images'
+    model_dir = 'model'
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
+    if not os.path.exists(model_dir):
+        os.makedirs(model_dir)
 def save_decoded_image(img, name):
     img = img.view(img.size(0), 3, 256, 256)
     save_image(img, name)
