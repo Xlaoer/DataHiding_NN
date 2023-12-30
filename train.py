@@ -32,7 +32,9 @@ def train(net, trainloader, NUM_EPOCHS):
             img = img.to(device)
             optimizer.zero_grad()
             outputs = net(img)
-            psnr += calculate_psnr(img.data.numpy(),outputs.data.numpy())
+            for i in range(img.shape[0]):
+                psnr += calculate_psnr(img[i].data.numpy(),outputs[i].data.numpy())
+            psnr/=img.shape[0]
             loss = criterion(outputs, img)
             loss.backward()
             optimizer.step()
