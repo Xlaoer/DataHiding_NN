@@ -2,6 +2,7 @@ import os
 import torch
 import numpy as np
 import math
+import cv2
 from torchvision.utils import save_image
 
 
@@ -20,10 +21,17 @@ def save_decoded_image(img, name):
     save_image(img, name)
 
 def calculate_psnr(img1, img2):
-    # img1 and img2 have range [0, 255]
-    img1 = img1.astype(np.float64)
-    img2 = img2.astype(np.float64)
-    mse = np.mean((img1 - img2)**2)
-    if mse == 0:
-        return float('inf')
-    return 20 * math.log10(255.0 / math.sqrt(mse))
+    img1 = cv2.imread(img1)
+    img2 = cv2.imread(img2)
+
+    image_size = [512, 512]  # 将图像转化为512*512大小的尺寸
+    img1 = cv2.resize(img1, image_size, interpolation=cv2.INTER_CUBIC)
+    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img2 = cv2.resize(img2, image_size, interpolation=cv2.INTER_CUBIC)
+    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+    mse = np.mean((img1/1.0 - img2/1.0)**2)
+    # compute psnr
+    if mse < 1e-10:
+        return 100
+    psnr = 20 * math.log10(255.0 / math.sqrt(mse))
+    return psnr

@@ -26,27 +26,22 @@ def train(net, trainloader, NUM_EPOCHS):
     train_loss = []
     for epoch in range(NUM_EPOCHS):
         running_loss = 0.0
-        psnr_dataloader = 0.0
-        psnr_avg = 0.0
         for data in trainloader:
             img = data  # no need for the labels
             img = img.to(device)
             optimizer.zero_grad()
             outputs = net(img)
             psnr_each_img = 0.0
-            for i in range(img.shape[0]):
-                psnr_each_img += calculate_psnr(img[i].data.numpy(),outputs[i].data.numpy())
-            psnr_dataloader+=psnr_each_img/img.shape[0]
             loss = criterion(outputs, img)
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
         loss = running_loss / len(trainloader)
-        psnr_avg = psnr_dataloader / len(trainloader)
         train_loss.append(loss)
-        print('Epoch {} of {}, Train Loss: {:.3f} , PSNR:{:.3f}'.format(
-            epoch + 1, NUM_EPOCHS, loss,psnr_avg))
+        print('Epoch {} of {}, Train Loss: {:.3f}'.format(
+            epoch + 1, NUM_EPOCHS, loss))
         if epoch % 5 == 0:
             save_decoded_image(img.cpu().data, name='./Conv_CIFAR10_Images/original{}.png'.format(epoch))
             save_decoded_image(outputs.cpu().data, name='./Conv_CIFAR10_Images/decoded{}.png'.format(epoch))
+            print('Epoch {} of PSNR {}'.format(epoch+1,calculate_psnr('./Conv_CIFAR10_Images/original{}.png'.format(epoch),'./Conv_CIFAR10_Images/decoded{}.png'.format(epoch))))
     return train_loss
