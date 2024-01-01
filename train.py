@@ -11,18 +11,21 @@ from torch.utils.data import DataLoader
 from torchvision.utils import save_image
 from module import *
 from utils import *
+import time
 import sys
 
-NUM_EPOCHS = 100
+NUM_EPOCHS = 1
 LEARNING_RATE = 1e-3
 BATCH_SIZE = 12
+time = time.strftime("%y%m%d_%H%M%S", time.localtime())
 
 net = Autoencoder()
 print(net)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(net.parameters(), lr=LEARNING_RATE)
 device = get_device()
-file = open("output.txt","w")
+os.makedirs("./results/{}".format(time), exist_ok=True)
+file = open("./results/{}/output.txt".format(time),"w")
 
 def train(net, trainloader, NUM_EPOCHS):
     train_loss = []
@@ -45,9 +48,9 @@ def train(net, trainloader, NUM_EPOCHS):
         print(info,file=file)
         print(info)
         if epoch % 5 == 0:
-            save_decoded_image(img.cpu().data, name='./Conv_CIFAR10_Images/original{}.png'.format(epoch))
-            save_decoded_image(outputs.cpu().data, name='./Conv_CIFAR10_Images/decoded{}.png'.format(epoch))
-            info = 'Epoch {} of PSNR {}'.format(epoch+1,calculate_psnr('./Conv_CIFAR10_Images/original{}.png'.format(epoch),'./Conv_CIFAR10_Images/decoded{}.png'.format(epoch)))
+            save_decoded_image(img.cpu().data, name='./results/{}/train_process/original{}.png'.format(time,epoch))
+            save_decoded_image(outputs.cpu().data, name='./results/{}/train_process/decoded{}.png'.format(time,epoch))
+            info = 'Epoch {} of PSNR {}'.format(epoch+1,calculate_psnr('./results/{}/train_process/original{}.png'.format(time,epoch),'./results/{}/train_process/decoded{}.png'.format(time,epoch)))
             print(info, file=file)
             print(info)
     file.close()

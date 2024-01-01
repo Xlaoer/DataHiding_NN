@@ -47,12 +47,12 @@ testloader = DataLoader(
 def test_image_reconstruction(net, testloader):
     for batch in testloader:
         img = batch
-        save_image(img,'test_origin.png')
+        save_image(img,'./results/{}/test_origin.png'.format(time))
         img = img.to(device)
         outputs = net(img)
         outputs = outputs.view(outputs.size(0), 3, 256, 256).cpu().data
-        save_image(outputs, 'test_reconstruction.png')
-        print('PSNR for this test is {}'.format(calculate_psnr('test_origin.png','test_reconstruction.png')))
+        save_image(outputs, './results/{}/test_reconstruction.png'.format(time))
+        print('PSNR for this test is {}'.format(calculate_psnr('./results/{}/test_origin.png'.format(time),'./results/{}/test_reconstruction.png'.format(time))))
         break
 
 
@@ -65,9 +65,9 @@ if __name__ == '__main__':
     device = get_device()
     print(device)
     net.to(device)
-    make_dir()
+    make_dir(time)
     if args.command == 'continue':
-        net = torch.load("./model/model1.pth")  # 导入模型参数
+        net = torch.load("./results/model1.pth")  # 导入模型参数
     else:
         train_loss = train(net, trainloader, NUM_EPOCHS)
         plt.figure()
@@ -75,9 +75,9 @@ if __name__ == '__main__':
         plt.title('Train Loss')
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
-        plt.savefig('conv_ae_cifar10_loss.png')
+        plt.savefig('./results/{}/loss.png'.format(time))
     test_image_reconstruction(net, testloader)
     if args.command != 'continue':
-        torch.save(net, "./model/model1.pth")
+        torch.save(net, "./results/{}/model1.pth".format(time))
 
 
