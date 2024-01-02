@@ -1,0 +1,291 @@
+Autoencoder(
+  (encoder): Encoder(
+    (enc1): Conv2d(3, 8, kernel_size=(3, 3), stride=(1, 1))
+    (enc2): Conv2d(8, 4, kernel_size=(3, 3), stride=(1, 1))
+  )
+  (decoder): Decoder(
+    (dec1): ConvTranspose2d(4, 8, kernel_size=(3, 3), stride=(1, 1))
+    (dec2): ConvTranspose2d(8, 3, kernel_size=(3, 3), stride=(1, 1))
+  )
+)
+cpu
+Epoch 1 of 233, Train Loss: 0.330
+Epoch 1 of PSNR 14.272685841801469
+Epoch 2 of 233, Train Loss: 0.295
+Epoch 3 of 233, Train Loss: 0.248
+Epoch 4 of 233, Train Loss: 0.232
+Epoch 5 of 233, Train Loss: 0.228
+Epoch 6 of 233, Train Loss: 0.226
+Epoch 6 of PSNR 22.092736103988727
+Epoch 7 of 233, Train Loss: 0.225
+Epoch 8 of 233, Train Loss: 0.225
+Epoch 9 of 233, Train Loss: 0.224
+Epoch 10 of 233, Train Loss: 0.222
+Epoch 11 of 233, Train Loss: 0.221
+Epoch 11 of PSNR 21.785722487011228
+Epoch 12 of 233, Train Loss: 0.220
+Epoch 13 of 233, Train Loss: 0.219
+Epoch 14 of 233, Train Loss: 0.219
+Epoch 15 of 233, Train Loss: 0.218
+Epoch 16 of 233, Train Loss: 0.218
+Epoch 16 of PSNR 26.882414644540027
+Epoch 17 of 233, Train Loss: 0.218
+Epoch 18 of 233, Train Loss: 0.218
+Epoch 19 of 233, Train Loss: 0.218
+Epoch 20 of 233, Train Loss: 0.217
+Epoch 21 of 233, Train Loss: 0.217
+Epoch 21 of PSNR 22.172523787694107
+Epoch 22 of 233, Train Loss: 0.217
+Epoch 23 of 233, Train Loss: 0.217
+Epoch 24 of 233, Train Loss: 0.217
+Epoch 25 of 233, Train Loss: 0.217
+Epoch 26 of 233, Train Loss: 0.217
+Epoch 26 of PSNR 23.398227946211936
+Epoch 27 of 233, Train Loss: 0.216
+Epoch 28 of 233, Train Loss: 0.216
+Epoch 29 of 233, Train Loss: 0.216
+Epoch 30 of 233, Train Loss: 0.216
+Epoch 31 of 233, Train Loss: 0.216
+Epoch 31 of PSNR 26.38583652218116
+Epoch 32 of 233, Train Loss: 0.216
+Epoch 33 of 233, Train Loss: 0.216
+Epoch 34 of 233, Train Loss: 0.216
+Epoch 35 of 233, Train Loss: 0.216
+Epoch 36 of 233, Train Loss: 0.216
+Epoch 36 of PSNR 22.751433150287916
+Epoch 37 of 233, Train Loss: 0.216
+Epoch 38 of 233, Train Loss: 0.216
+Epoch 39 of 233, Train Loss: 0.216
+Epoch 40 of 233, Train Loss: 0.216
+Epoch 41 of 233, Train Loss: 0.215
+Epoch 41 of PSNR 26.807625122857512
+Epoch 42 of 233, Train Loss: 0.215
+Epoch 43 of 233, Train Loss: 0.215
+Epoch 44 of 233, Train Loss: 0.215
+Epoch 45 of 233, Train Loss: 0.215
+Epoch 46 of 233, Train Loss: 0.215
+Epoch 46 of PSNR 22.8841021410916
+Epoch 47 of 233, Train Loss: 0.215
+Epoch 48 of 233, Train Loss: 0.215
+Epoch 49 of 233, Train Loss: 0.215
+Epoch 50 of 233, Train Loss: 0.215
+Epoch 51 of 233, Train Loss: 0.215
+Epoch 51 of PSNR 27.022195369491445
+Epoch 52 of 233, Train Loss: 0.215
+Epoch 53 of 233, Train Loss: 0.215
+Epoch 54 of 233, Train Loss: 0.215
+Epoch 55 of 233, Train Loss: 0.215
+Epoch 56 of 233, Train Loss: 0.215
+Epoch 56 of PSNR 24.86582704682757
+Epoch 57 of 233, Train Loss: 0.217
+Epoch 58 of 233, Train Loss: 0.217
+Epoch 59 of 233, Train Loss: 0.216
+Epoch 60 of 233, Train Loss: 0.215
+Epoch 61 of 233, Train Loss: 0.215
+Epoch 61 of PSNR 28.22569656408481
+Epoch 62 of 233, Train Loss: 0.215
+Epoch 63 of 233, Train Loss: 0.215
+Epoch 64 of 233, Train Loss: 0.214
+Epoch 65 of 233, Train Loss: 0.214
+Epoch 66 of 233, Train Loss: 0.214
+Epoch 66 of PSNR 26.96447756928871
+Epoch 67 of 233, Train Loss: 0.214
+Epoch 68 of 233, Train Loss: 0.214
+Epoch 69 of 233, Train Loss: 0.214
+Epoch 70 of 233, Train Loss: 0.214
+Epoch 71 of 233, Train Loss: 0.214
+Epoch 71 of PSNR 26.525637548498935
+Epoch 72 of 233, Train Loss: 0.214
+Epoch 73 of 233, Train Loss: 0.214
+Epoch 74 of 233, Train Loss: 0.214
+Epoch 75 of 233, Train Loss: 0.214
+Epoch 76 of 233, Train Loss: 0.214
+Epoch 76 of PSNR 28.068387577062566
+Epoch 77 of 233, Train Loss: 0.214
+Epoch 78 of 233, Train Loss: 0.214
+Epoch 79 of 233, Train Loss: 0.214
+Epoch 80 of 233, Train Loss: 0.214
+Epoch 81 of 233, Train Loss: 0.214
+Epoch 81 of PSNR 28.40317240563131
+Epoch 82 of 233, Train Loss: 0.214
+Epoch 83 of 233, Train Loss: 0.214
+Epoch 84 of 233, Train Loss: 0.214
+Epoch 85 of 233, Train Loss: 0.214
+Epoch 86 of 233, Train Loss: 0.214
+Epoch 86 of PSNR 27.353739133219136
+Epoch 87 of 233, Train Loss: 0.214
+Epoch 88 of 233, Train Loss: 0.214
+Epoch 89 of 233, Train Loss: 0.214
+Epoch 90 of 233, Train Loss: 0.214
+Epoch 91 of 233, Train Loss: 0.214
+Epoch 91 of PSNR 27.73744923250326
+Epoch 92 of 233, Train Loss: 0.214
+Epoch 93 of 233, Train Loss: 0.214
+Epoch 94 of 233, Train Loss: 0.213
+Epoch 95 of 233, Train Loss: 0.213
+Epoch 96 of 233, Train Loss: 0.213
+Epoch 96 of PSNR 30.796372752490946
+Epoch 97 of 233, Train Loss: 0.213
+Epoch 98 of 233, Train Loss: 0.213
+Epoch 99 of 233, Train Loss: 0.213
+Epoch 100 of 233, Train Loss: 0.213
+Epoch 101 of 233, Train Loss: 0.213
+Epoch 101 of PSNR 27.34471329920176
+Epoch 102 of 233, Train Loss: 0.213
+Epoch 103 of 233, Train Loss: 0.213
+Epoch 104 of 233, Train Loss: 0.213
+Epoch 105 of 233, Train Loss: 0.213
+Epoch 106 of 233, Train Loss: 0.213
+Epoch 106 of PSNR 28.136521833649017
+Epoch 107 of 233, Train Loss: 0.213
+Epoch 108 of 233, Train Loss: 0.213
+Epoch 109 of 233, Train Loss: 0.213
+Epoch 110 of 233, Train Loss: 0.214
+Epoch 111 of 233, Train Loss: 0.215
+Epoch 111 of PSNR 32.68787962361907
+Epoch 112 of 233, Train Loss: 0.215
+Epoch 113 of 233, Train Loss: 0.214
+Epoch 114 of 233, Train Loss: 0.213
+Epoch 115 of 233, Train Loss: 0.213
+Epoch 116 of 233, Train Loss: 0.213
+Epoch 116 of PSNR 28.172344982707216
+Epoch 117 of 233, Train Loss: 0.213
+Epoch 118 of 233, Train Loss: 0.213
+Epoch 119 of 233, Train Loss: 0.213
+Epoch 120 of 233, Train Loss: 0.213
+Epoch 121 of 233, Train Loss: 0.213
+Epoch 121 of PSNR 29.669924816080425
+Epoch 122 of 233, Train Loss: 0.213
+Epoch 123 of 233, Train Loss: 0.213
+Epoch 124 of 233, Train Loss: 0.213
+Epoch 125 of 233, Train Loss: 0.213
+Epoch 126 of 233, Train Loss: 0.213
+Epoch 126 of PSNR 30.504678871236123
+Epoch 127 of 233, Train Loss: 0.213
+Epoch 128 of 233, Train Loss: 0.213
+Epoch 129 of 233, Train Loss: 0.213
+Epoch 130 of 233, Train Loss: 0.213
+Epoch 131 of 233, Train Loss: 0.213
+Epoch 131 of PSNR 26.780397056389354
+Epoch 132 of 233, Train Loss: 0.213
+Epoch 133 of 233, Train Loss: 0.213
+Epoch 134 of 233, Train Loss: 0.213
+Epoch 135 of 233, Train Loss: 0.213
+Epoch 136 of 233, Train Loss: 0.213
+Epoch 136 of PSNR 29.4471546822912
+Epoch 137 of 233, Train Loss: 0.213
+Epoch 138 of 233, Train Loss: 0.213
+Epoch 139 of 233, Train Loss: 0.213
+Epoch 140 of 233, Train Loss: 0.213
+Epoch 141 of 233, Train Loss: 0.213
+Epoch 141 of PSNR 29.414772672676648
+Epoch 142 of 233, Train Loss: 0.213
+Epoch 143 of 233, Train Loss: 0.213
+Epoch 144 of 233, Train Loss: 0.213
+Epoch 145 of 233, Train Loss: 0.213
+Epoch 146 of 233, Train Loss: 0.213
+Epoch 146 of PSNR 29.647306322359853
+Epoch 147 of 233, Train Loss: 0.213
+Epoch 148 of 233, Train Loss: 0.213
+Epoch 149 of 233, Train Loss: 0.213
+Epoch 150 of 233, Train Loss: 0.213
+Epoch 151 of 233, Train Loss: 0.213
+Epoch 151 of PSNR 29.704977911694762
+Epoch 152 of 233, Train Loss: 0.214
+Epoch 153 of 233, Train Loss: 0.213
+Epoch 154 of 233, Train Loss: 0.213
+Epoch 155 of 233, Train Loss: 0.213
+Epoch 156 of 233, Train Loss: 0.213
+Epoch 156 of PSNR 27.09093176096699
+Epoch 157 of 233, Train Loss: 0.213
+Epoch 158 of 233, Train Loss: 0.213
+Epoch 159 of 233, Train Loss: 0.213
+Epoch 160 of 233, Train Loss: 0.213
+Epoch 161 of 233, Train Loss: 0.213
+Epoch 161 of PSNR 30.719013536338622
+Epoch 162 of 233, Train Loss: 0.213
+Epoch 163 of 233, Train Loss: 0.212
+Epoch 164 of 233, Train Loss: 0.212
+Epoch 165 of 233, Train Loss: 0.212
+Epoch 166 of 233, Train Loss: 0.212
+Epoch 166 of PSNR 29.680738987930543
+Epoch 167 of 233, Train Loss: 0.212
+Epoch 168 of 233, Train Loss: 0.212
+Epoch 169 of 233, Train Loss: 0.212
+Epoch 170 of 233, Train Loss: 0.212
+Epoch 171 of 233, Train Loss: 0.212
+Epoch 171 of PSNR 31.65759730504655
+Epoch 172 of 233, Train Loss: 0.212
+Epoch 173 of 233, Train Loss: 0.212
+Epoch 174 of 233, Train Loss: 0.212
+Epoch 175 of 233, Train Loss: 0.212
+Epoch 176 of 233, Train Loss: 0.212
+Epoch 176 of PSNR 31.946184455614684
+Epoch 177 of 233, Train Loss: 0.212
+Epoch 178 of 233, Train Loss: 0.212
+Epoch 179 of 233, Train Loss: 0.212
+Epoch 180 of 233, Train Loss: 0.212
+Epoch 181 of 233, Train Loss: 0.212
+Epoch 181 of PSNR 30.73888367357884
+Epoch 182 of 233, Train Loss: 0.212
+Epoch 183 of 233, Train Loss: 0.212
+Epoch 184 of 233, Train Loss: 0.212
+Epoch 185 of 233, Train Loss: 0.212
+Epoch 186 of 233, Train Loss: 0.212
+Epoch 186 of PSNR 28.667194602092614
+Epoch 187 of 233, Train Loss: 0.212
+Epoch 188 of 233, Train Loss: 0.212
+Epoch 189 of 233, Train Loss: 0.212
+Epoch 190 of 233, Train Loss: 0.212
+Epoch 191 of 233, Train Loss: 0.212
+Epoch 191 of PSNR 31.9433943740429
+Epoch 192 of 233, Train Loss: 0.212
+Epoch 193 of 233, Train Loss: 0.212
+Epoch 194 of 233, Train Loss: 0.212
+Epoch 195 of 233, Train Loss: 0.212
+Epoch 196 of 233, Train Loss: 0.212
+Epoch 196 of PSNR 31.552030503290233
+Epoch 197 of 233, Train Loss: 0.212
+Epoch 198 of 233, Train Loss: 0.212
+Epoch 199 of 233, Train Loss: 0.212
+Epoch 200 of 233, Train Loss: 0.212
+Epoch 201 of 233, Train Loss: 0.212
+Epoch 201 of PSNR 32.74297079895697
+Epoch 202 of 233, Train Loss: 0.212
+Epoch 203 of 233, Train Loss: 0.212
+Epoch 204 of 233, Train Loss: 0.212
+Epoch 205 of 233, Train Loss: 0.212
+Epoch 206 of 233, Train Loss: 0.212
+Epoch 206 of PSNR 32.43830270533944
+Epoch 207 of 233, Train Loss: 0.212
+Epoch 208 of 233, Train Loss: 0.212
+Epoch 209 of 233, Train Loss: 0.212
+Epoch 210 of 233, Train Loss: 0.212
+Epoch 211 of 233, Train Loss: 0.212
+Epoch 211 of PSNR 34.77428642520089
+Epoch 212 of 233, Train Loss: 0.212
+Epoch 213 of 233, Train Loss: 0.212
+Epoch 214 of 233, Train Loss: 0.212
+Epoch 215 of 233, Train Loss: 0.212
+Epoch 216 of 233, Train Loss: 0.212
+Epoch 216 of PSNR 31.237915452515296
+Epoch 217 of 233, Train Loss: 0.212
+Epoch 218 of 233, Train Loss: 0.212
+Epoch 219 of 233, Train Loss: 0.212
+Epoch 220 of 233, Train Loss: 0.212
+Epoch 221 of 233, Train Loss: 0.212
+Epoch 221 of PSNR 28.649999672571568
+Epoch 222 of 233, Train Loss: 0.212
+Epoch 223 of 233, Train Loss: 0.212
+Epoch 224 of 233, Train Loss: 0.212
+Epoch 225 of 233, Train Loss: 0.212
+Epoch 226 of 233, Train Loss: 0.212
+Epoch 226 of PSNR 32.31241916617193
+Epoch 227 of 233, Train Loss: 0.212
+Epoch 228 of 233, Train Loss: 0.212
+Epoch 229 of 233, Train Loss: 0.212
+Epoch 230 of 233, Train Loss: 0.212
+Epoch 231 of 233, Train Loss: 0.212
+Epoch 231 of PSNR 32.081771048193175
+Epoch 232 of 233, Train Loss: 0.212
+Epoch 233 of 233, Train Loss: 0.212
