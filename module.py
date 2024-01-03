@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 
 class Encoder(nn.Module):
-    def __init__(self, input_dim=3, output_dim=1, hidden_dim=6):
+    def __init__(self, input_dim=3, output_dim=3, hidden_dim=8):
         super(Encoder, self).__init__()
         # 编码器部分，这里使用两层卷积并跟上最大池化层来缩小特征图尺寸
         self.conv1 = nn.Conv2d(input_dim, hidden_dim, kernel_size=4, stride=2, padding=1)
@@ -23,7 +23,7 @@ class Encoder(nn.Module):
 
 
 class Decoder(nn.Module):
-    def __init__(self, input_dim=1, output_dim=3, hidden_dim=6, img_size=256):
+    def __init__(self, input_dim=3, output_dim=3, hidden_dim=8, img_size=256):
         super(Decoder, self).__init__()
         # 解码器部分，使用转置卷积（transpose convolution）将特征图恢复到原始尺寸
         self.t_conv1 = nn.ConvTranspose2d(input_dim, hidden_dim, kernel_size=4, stride=2, padding=1)
