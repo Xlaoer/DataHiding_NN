@@ -50,14 +50,35 @@ class Autoencoder(nn.Module):
         encoded = self.encoder(x)
 
 
-        # int_tensor = (encoded * 255).to(torch.uint8)
-        # store_carrier = np.zeros((int_tensor.size(0),1,1,1))
-        # print(store_carrier)
-        # for i in int_tensor:
-        #     for j in i:
-        #         for k in j:
-        #             for m in k:
-        #                 break
+        int_tensor = (encoded * 255).to(torch.uint8)
+        store_carrier = np.zeros((int_tensor.size(0),int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3),8),dtype=bool)
+        reshape_store_carrier = np.zeros((int_tensor.size(0),(int)(int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)*8/6),6),dtype=bool)
+        hidding_carrier = np.zeros((int_tensor.size(0),(int)(int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)*8/6),8),dtype=bool)
 
-        decoded = self.decoder(encoded)
+        ansstr = ''
+        each_batch_pixel = int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)
+
+        # generate store_carrier(int_tensor -> 8-bit per row)
+        for i,int_tensor_val in enumerate(int_tensor):
+            t = 0
+            for j in int_tensor_val:
+                for k in j:
+                    for m in k:
+                        val = format(m, '08b')
+                        ansstr+=val
+                        # print(val)
+                        for x, bit in enumerate(val):
+                            store_carrier[i][t][x] = (bit == '1')
+                        t+=1
+
+        # generate reshape_store_carrier(8-bit per row -> 6-bit per row)
+        for i,each_batchsize_val in enumerate(store_carrier):
+            t = 0
+            for j in each_batchsize_val:
+                for x in range(6):
+                    reshape_store_carrier[i][t][x] = (ansstr[i*each_batch_pixel+t*6+x] == '1')
+                t+=1
+
+        float_tensor = int_tensor.to(torch.float32) / 255.0
+        decoded = self.decoder(float_tensor)
         return decoded
