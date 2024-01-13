@@ -1,3 +1,14 @@
+Autoencoder(
+  (encoder): Encoder(
+    (enc1): Conv2d(3, 8, kernel_size=(3, 3), stride=(1, 1))
+    (enc2): Conv2d(8, 4, kernel_size=(3, 3), stride=(1, 1))
+  )
+  (decoder): Decoder(
+    (dec1): ConvTranspose2d(4, 8, kernel_size=(3, 3), stride=(1, 1))
+    (dec2): ConvTranspose2d(8, 3, kernel_size=(3, 3), stride=(1, 1))
+  )
+)
+cpu
 Epoch 1 of 233, Train Loss: 0.320
 Epoch 1 of PSNR 12.251793743257544
 Epoch 2 of 233, Train Loss: 0.316
@@ -278,3 +289,4 @@ Epoch 231 of 233, Train Loss: 0.230
 Epoch 231 of PSNR 20.953544602694265
 Epoch 232 of 233, Train Loss: 0.231
 Epoch 233 of 233, Train Loss: 0.231
+PSNR for this test is 19.617556068106424
