@@ -1,0 +1,46 @@
+/Users/machenchao/anaconda3/bin/python /Users/machenchao/PycharmProjects/test/main.py
+Autoencoder(
+  (encoder): Encoder(
+    (encoder): Sequential(
+      (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (1): ReLU()
+      (2): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (3): ReLU()
+      (4): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (5): ReLU()
+    )
+  )
+  (decoder): Decoder(
+    (decoder): Sequential(
+      (0): ConvTranspose2d(256, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+      (1): ReLU()
+      (2): ConvTranspose2d(128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+      (3): ReLU()
+      (4): ConvTranspose2d(64, 3, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+      (5): Sigmoid()
+    )
+  )
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+)
+cpu
+Epoch 1 of 233, Train Loss: 8117.382
+Epoch 1 of PSNR 6.626819436802175
+Epoch 2 of 233, Train Loss: 5.825
+Epoch 3 of 233, Train Loss: 0.532
+Epoch 4 of 233, Train Loss: 0.397
+Epoch 5 of 233, Train Loss: 0.389
+Epoch 6 of 233, Train Loss: 0.388
+Epoch 6 of PSNR 5.434320721863237
+Epoch 7 of 233, Train Loss: 0.387
+Epoch 8 of 233, Train Loss: 0.387
+Epoch 9 of 233, Train Loss: 0.387
+Epoch 10 of 233, Train Loss: 0.387
+Epoch 11 of 233, Train Loss: 0.387
+Epoch 11 of PSNR 5.545510604053937
+Epoch 12 of 233, Train Loss: 0.387
+Epoch 13 of 233, Train Loss: 0.387
+Epoch 14 of 233, Train Loss: 0.387
+Epoch 15 of 233, Train Loss: 0.387
+Epoch 16 of 233, Train Loss: 0.387
+Epoch 16 of PSNR 5.905303937942886
+Epoch 17 of 233, Train Loss: 0.387

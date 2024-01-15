@@ -14,7 +14,7 @@ from utils import *
 import time
 import sys
 
-NUM_EPOCHS = 1
+NUM_EPOCHS = 233
 LEARNING_RATE = 1e-3
 BATCH_SIZE = 12
 time = time.strftime("%y%m%d_%H%M%S", time.localtime())

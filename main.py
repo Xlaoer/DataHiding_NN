@@ -8,7 +8,6 @@ import argparse
 transform = transforms.Compose([
     transforms.Resize((256,256)),
     transforms.ToTensor(),
-    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
 
 class ImageDataset(Dataset):
@@ -27,8 +26,8 @@ class ImageDataset(Dataset):
   def __len__(self):
     return len(self.imgs)
 
-trainset = ImageDataset('train_images',transform=transform)
-testset = ImageDataset('test_images',transform=transform)
+trainset = ImageDataset('caltech256/train_images',transform=transform)
+testset = ImageDataset('caltech256/test_images',transform=transform)
 
 trainloader = DataLoader(
     trainset,

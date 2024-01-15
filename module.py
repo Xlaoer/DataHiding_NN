@@ -5,80 +5,47 @@ import torch.nn.functional as F
 
 
 class Encoder(nn.Module):
-    def __init__(self, input_dim=3, output_dim=3, hidden_dim=8):
+    def __init__(self):
         super(Encoder, self).__init__()
-        # 编码器部分，这里使用两层卷积并跟上最大池化层来缩小特征图尺寸
-        self.conv1 = nn.Conv2d(input_dim, hidden_dim, kernel_size=4, stride=2, padding=1)
-        self.bn1 = nn.BatchNorm2d(hidden_dim)
-        self.relu1 = nn.ReLU(True)
-
-        self.conv2 = nn.Conv2d(hidden_dim, output_dim, kernel_size=4, stride=2, padding=1)
-        self.bn2 = nn.BatchNorm2d(output_dim)
-        self.relu2 = nn.ReLU(True)
-
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(128, 256, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+        )
     def forward(self, x):
-        x = self.relu1(self.bn1(self.conv1(x)))
-        x = self.relu2(self.bn2(self.conv2(x)))
-        return x
-
+       x = self.encoder(x)
+       return x
 
 class Decoder(nn.Module):
-    def __init__(self, input_dim=3, output_dim=3, hidden_dim=8, img_size=256):
+    def __init__(self):
         super(Decoder, self).__init__()
-        # 解码器部分，使用转置卷积（transpose convolution）将特征图恢复到原始尺寸
-        self.t_conv1 = nn.ConvTranspose2d(input_dim, hidden_dim, kernel_size=4, stride=2, padding=1)
-        self.bn1 = nn.BatchNorm2d(hidden_dim)
-        self.relu1 = nn.ReLU(True)
-
-        self.t_conv2 = nn.ConvTranspose2d(hidden_dim, output_dim, kernel_size=4, stride=2, padding=1)
-        self.relu2 = nn.ReLU(True)
-
+        # decoder
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(64, 3, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.Sigmoid(),  # 输出范围在[0, 1]
+        )
     def forward(self, x):
-        x = self.relu1(self.bn1(self.t_conv1(x)))
-        x = self.relu2(self.t_conv2(x))
-        # 输出层不使用激活函数，以便输出范围可以覆盖整个像素值区间
-        return x
-
+       x = self.decoder(x)
+       x = x * 255.0
+       return x
 
 class Autoencoder(nn.Module):
     def __init__(self):
         super(Autoencoder, self).__init__()
         self.encoder = Encoder()
         self.decoder = Decoder()
+        self.flatten = nn.Flatten()
 
     def forward(self, x):
         encoded = self.encoder(x)
-
-
-        int_tensor = (encoded * 255).to(torch.uint8)
-        store_carrier = np.zeros((int_tensor.size(0),int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3),8),dtype=bool)
-        reshape_store_carrier = np.zeros((int_tensor.size(0),(int)(int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)*8/6),6),dtype=bool)
-        hidding_carrier = np.zeros((int_tensor.size(0),(int)(int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)*8/6),8),dtype=bool)
-
-        ansstr = ''
-        each_batch_pixel = int_tensor.size(1)*int_tensor.size(2)*int_tensor.size(3)
-
-        # generate store_carrier(int_tensor -> 8-bit per row)
-        for i,int_tensor_val in enumerate(int_tensor):
-            t = 0
-            for j in int_tensor_val:
-                for k in j:
-                    for m in k:
-                        val = format(m, '08b')
-                        ansstr+=val
-                        # print(val)
-                        for x, bit in enumerate(val):
-                            store_carrier[i][t][x] = (bit == '1')
-                        t+=1
-
-        # generate reshape_store_carrier(8-bit per row -> 6-bit per row)
-        for i,each_batchsize_val in enumerate(store_carrier):
-            t = 0
-            for j in each_batchsize_val:
-                for x in range(6):
-                    reshape_store_carrier[i][t][x] = (ansstr[i*each_batch_pixel+t*6+x] == '1')
-                t+=1
-
-        float_tensor = int_tensor.to(torch.float32) / 255.0
-        decoded = self.decoder(float_tensor)
+        mid = self.flatten(encoded)
+        test = mid.view(-1, 256, 32, 32)
+        decoded = self.decoder(test)
         return decoded
