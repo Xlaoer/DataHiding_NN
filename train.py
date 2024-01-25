@@ -13,13 +13,22 @@ from module import *
 from utils import *
 import time
 import sys
+from code_final_cifar_net import *
+import argparse
+
 
 NUM_EPOCHS = 233
 LEARNING_RATE = 1e-3
 BATCH_SIZE = 12
 time = time.strftime("%y%m%d_%H%M%S", time.localtime())
 
-net = Autoencoder()
+# net = Autoencoder()
+# torch.backends.cudnn.enabled = False
+parser = argparse.ArgumentParser()
+# model hyper-parameters
+parser.add_argument('--trans_bit', type=int, default=256)
+config = parser.parse_args()
+net = Our_Net(config)
 print(net)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(net.parameters(), lr=LEARNING_RATE)
